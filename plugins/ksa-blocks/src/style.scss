@@ -1,0 +1,35 @@
+/**
+ * The following styles get applied both on the front of your site
+ * and in the editor.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+
+.wp-block-ksa-blocks-leiding-portret {
+	padding: 0px;
+	padding-bottom: 2rem;
+	border-bottom-left-radius: 1rem;
+	border-bottom-right-radius: 1rem;
+	width: 250px;
+	margin: 0;
+}
+
+.wp-block-ksa-blocks-leiding-portret figure {
+	width: 100%;
+	height: 250px;
+	object-fit: cover;
+}
+
+.wp-block-ksa-blocks-leiding-portret img {
+	width: 100%;
+	height: 250px;
+	object-fit: cover;
+}
+
+.wp-block-ksa-blocks-leiding-portret a {
+	color: white;
+}
+
+.wp-block-ksa-blocks-leiding-portret a:hover {
+	color: #f4901d;
+}
