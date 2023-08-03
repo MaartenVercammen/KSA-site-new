@@ -41,3 +41,30 @@ register_nav_menus(
         'header-menu' => 'Top Menu Location',
     )
 );
+
+// color picker
+add_theme_support(
+    'editor-color-palette',
+    array(
+        array(
+            'name'  => esc_html__( 'Dark-Blue', 'KSA' ),
+            'slug'  => 'Dark-Blue',
+            'color' => '#023047',
+        ),
+        array(
+            'name'  => esc_html__( 'Orange', 'KSA' ),
+            'slug'  => 'Orange',
+            'color' => '#f4901d',
+        ),
+        array(
+            'name'  => esc_html__( 'White', 'KSA' ),
+            'slug'  => 'White',
+            'color' => '#ffffff',
+        ),
+        array(
+            'name'  => esc_html__( 'Black', 'KSA' ),
+            'slug'  => 'Black',
+            'color' => '#000000',
+        ),
+    )
+);

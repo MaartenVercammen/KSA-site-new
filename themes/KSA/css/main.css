@@ -53,28 +53,6 @@ h6 {
   src: url("../fonts/KGSecondChancesSketch.ttf");
 }
 
-@font-face {
-  font-family: Montserrat;
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("../fonts/Montserrat.woff2") format("woff2");
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
-    U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215,
-    U+FEFF, U+FFFD;
-}
-
-@font-face {
-  font-family: Montserrat;
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url("/fonts/Montserrat.woff2") format("woff2");
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
-    U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215,
-    U+FEFF, U+FFFD;
-}
-
 /********************* HEADER *********************/
 
 header {
@@ -108,6 +86,7 @@ nav {
   width: 100%;
   padding: 1rem 0;
   list-style: none;
+  margin: 0;
 }
 
 #menu-main-nav li {
@@ -305,4 +284,80 @@ footer a {
 
 footer a:hover {
   color: #f4901d;
+}
+
+/********************* leeftijd pages *********************/
+
+.head{
+  display: grid;
+  grid-template-areas: container;
+  place-items: center;
+  place-content: center;
+  overflow: hidden;
+  width: 100%;
+  height: 25vh;
+}
+
+.head img{
+  width: 100vw;
+  height: auto;
+  object-fit: cover;
+  grid-area: container;
+}
+
+.head h1 {
+  grid-area: container;
+  z-index: 1;
+}
+
+.page-wrap{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  min-height: 100vh;
+}
+
+.page-wrap footer{
+  margin-top: auto;
+}
+
+.page-wrap .Container{
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-top: 2rem;
+}
+
+
+/********************* custom colors *********************/
+
+.has-white-color {
+  color: #fff;
+}
+
+.has-white-background-color {
+  background-color: #fff;
+}
+
+.has-dark-blue-background-color {
+  background-color: #023047;
+}
+
+.has-dark-blue-color {
+  color: #023047;
+}
+
+.has-orange-color {
+  color: #f4901d;
+}
+
+.has-orange-background-color {
+  background-color: #f4901d;
+}
+
+.has-black-color{
+  color: #000;
+}
+
+.has-black-background-color{
+  background-color: #000;
 }

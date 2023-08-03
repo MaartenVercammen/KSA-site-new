@@ -61,9 +61,11 @@ function Edit() {
 const TEMPLATE = [['core/image', {
   align: 'center'
 }], ['core/heading', {
-  placeholder: 'Name'
+  placeholder: 'Name',
+  textAlign: 'center'
 }], ['core/paragraph', {
-  placeholder: 'Number'
+  placeholder: 'Number',
+  align: 'center'
 }]];
 
 /***/ }),
@@ -234,7 +236,7 @@ module.exports = window["wp"]["i18n"];
   \************************/
 /***/ ((module) => {
 
-module.exports = JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"ksa-blocks/leiding-portret","version":"0.1.0","title":"Ksa Blocks","category":"widgets","icon":"smiley","description":"Example block scaffolded with Create Block tool.","supports":{"html":false,"color":{"background":true,"text":true}},"textdomain":"ksa-blocks","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","viewScript":"file:./view.js"}');
+module.exports = JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"ksa-blocks/leiding-portret","version":"0.1.0","title":"Ksa leiding portret","category":"widgets","icon":"smiley","description":"Example block scaffolded with Create Block tool.","supports":{"html":false,"color":{"background":true,"text":true}},"textdomain":"ksa-blocks","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","viewScript":"file:./view.js"}');
 
 /***/ })
 

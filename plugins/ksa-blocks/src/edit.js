@@ -39,6 +39,6 @@ export default function Edit() {
 
 const TEMPLATE = [
 	[ 'core/image', { align: 'center' } ],
-	[ 'core/heading', { placeholder: 'Name' } ],
-	[ 'core/paragraph', { placeholder: 'Number' } ],
+	[ 'core/heading', { placeholder: 'Name', textAlign: 'center' } ],
+	[ 'core/paragraph', { placeholder: 'Number', align: 'center' } ],
 ]

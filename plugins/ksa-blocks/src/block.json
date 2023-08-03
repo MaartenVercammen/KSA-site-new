@@ -3,7 +3,7 @@
 	"apiVersion": 3,
 	"name": "ksa-blocks/leiding-portret",
 	"version": "0.1.0",
-	"title": "Ksa Blocks",
+	"title": "Ksa leiding portret",
 	"category": "widgets",
 	"icon": "smiley",
 	"description": "Example block scaffolded with Create Block tool.",

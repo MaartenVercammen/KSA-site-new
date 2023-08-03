@@ -21,6 +21,22 @@
  * @see https://developer.wordpress.org/reference/functions/register_block_type/
  */
 function create_block_ksa_blocks_block_init() {
-	register_block_type( __DIR__ . '/build' );
+	register_block_type( __DIR__ . '/build' , [
+        'render_callback' => 'markup_my_custom_block',
+        'attributes' => [
+            'backgroundColor' => [
+                'type' => 'string',
+                'default' => 'Dark-Blue'
+			],
+			'textColor' => [
+				'type' => 'string',
+				'default' => 'White'
+			]
+        ]
+    ] );
 }
 add_action( 'init', 'create_block_ksa_blocks_block_init' );
+
+function markup_my_custom_block($attr, $content) {
+    return $content;
+}
