@@ -1,10 +1,9 @@
-version: '3.1'
+version: '3.9'
 services:
   wordpress:
-    image: wordpress
+    image: wordpress:latest
+    container_name: wp_beta_ksa
     restart: always
-    ports:
-      - 8080:80
     environment:
       WORDPRESS_DB_HOST_FILE: /run/secrets/WORDPRESS_DB_HOST
       WORDPRESS_DB_USER_FILE: /run/secrets/WORDPRESS_DB_USER
