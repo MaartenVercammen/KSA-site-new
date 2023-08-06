@@ -4,6 +4,25 @@ services:
     image: wordpress:latest
     container_name: wp_beta_ksa
     restart: always
+    networks:
+      - traefik-public
+    labels:
+      - "traefik.enable=true"
+      # HTTP Router - redirect to https
+      - "traefik.http.routers.http-ksa-beta.entrypoints=web"
+      - "traefik.http.routers.http-ksa-beta.rule=Host(`beta.ksa-aarschot.be`)"
+      - "traefik.http.routers.http-ksa-beta.middlewares=secure-no-csp@file,redirect-to-https@file"
+      - "traefik.http.routers.http-ksa-beta.service=ksa-beta"
+      # HTTPS Router
+      - "traefik.http.routers.https-ksa-beta.entrypoints=websecure"
+      - "traefik.http.routers.https-ksa-beta.rule=Host(`beta.ksa-aarschot.be`)"
+      - "traefik.http.routers.https-ksa-beta.tls=true"
+      - "traefik.http.routers.https-ksa-beta.tls.options=modern@file"
+      - "traefik.http.routers.https-ksa-beta.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.https-ksa-beta.middlewares=secure-no-csp@file"
+      - "traefik.http.routers.https-ksa-beta.service=ksa-beta"
+      # Service
+      - "traefik.http.services.ksa-beta.loadbalancer.server.port=80"
     environment:
       WORDPRESS_DB_HOST_FILE: /run/secrets/WORDPRESS_DB_HOST
       WORDPRESS_DB_USER_FILE: /run/secrets/WORDPRESS_DB_USER
@@ -13,3 +32,7 @@ services:
       - ./docker/secrets:/run/secrets
       - ./themes/:/var/www/html/wp-content/themes/
       - ./plugins/:/var/www/html/wp-content/plugins/
+
+networks:
+  traefik-public:
+    external: true
