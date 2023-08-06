@@ -1,2 +1,7 @@
 **/node_modules/
 wordpress/
+docker/secrets
+plugins/
+themes/
+!themes/KSA
+!themes/index.php

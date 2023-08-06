@@ -1,43 +1,38 @@
-version: '3.1'
-
+version: '3.9'
 services:
-  nginx:
-    container_name: nginx
-    image: nginx:latest
-    restart: unless-stopped
-    ports:
-        - 80:80
-        - 443:443
-    volumes:
-        - ./nginx/conf:/etc/nginx/conf.d
-
   wordpress:
-    image: wordpress
+    image: wordpress:latest
+    container_name: wp_beta_ksa
     restart: always
-    ports:
-      - 8080:80
+    networks:
+      - traefik-public
+    labels:
+      - "traefik.enable=true"
+      # HTTP Router - redirect to https
+      - "traefik.http.routers.http-ksa-beta.entrypoints=web"
+      - "traefik.http.routers.http-ksa-beta.rule=Host(`beta.ksa-aarschot.be`)"
+      - "traefik.http.routers.http-ksa-beta.middlewares=secure-no-csp@file,redirect-to-https@file"
+      - "traefik.http.routers.http-ksa-beta.service=ksa-beta"
+      # HTTPS Router
+      - "traefik.http.routers.https-ksa-beta.entrypoints=websecure"
+      - "traefik.http.routers.https-ksa-beta.rule=Host(`beta.ksa-aarschot.be`)"
+      - "traefik.http.routers.https-ksa-beta.tls=true"
+      - "traefik.http.routers.https-ksa-beta.tls.options=modern@file"
+      - "traefik.http.routers.https-ksa-beta.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.https-ksa-beta.middlewares=secure-no-csp@file"
+      - "traefik.http.routers.https-ksa-beta.service=ksa-beta"
+      # Service
+      - "traefik.http.services.ksa-beta.loadbalancer.server.port=80"
     environment:
-      WORDPRESS_DB_HOST: db
-      WORDPRESS_DB_USER: exampleuser
-      WORDPRESS_DB_PASSWORD: examplepass
-      WORDPRESS_DB_NAME: exampledb
+      WORDPRESS_DB_HOST_FILE: /run/secrets/WORDPRESS_DB_HOST
+      WORDPRESS_DB_USER_FILE: /run/secrets/WORDPRESS_DB_USER
+      WORDPRESS_DB_PASSWORD_FILE: /run/secrets/WORDPRESS_DB_PASSWORD
+      WORDPRESS_DB_NAME_FILE: /run/secrets/WORDPRESS_DB_NAME
     volumes:
-      - wordpress:/var/www/html
-      - ./wordpress:/var/www/html
+      - ./docker/secrets:/run/secrets
       - ./themes/:/var/www/html/wp-content/themes/
       - ./plugins/:/var/www/html/wp-content/plugins/
 
-  db:
-    image: mysql:5.7
-    restart: always
-    environment:
-      MYSQL_DATABASE: exampledb
-      MYSQL_USER: exampleuser
-      MYSQL_PASSWORD: examplepass
-      MYSQL_RANDOM_ROOT_PASSWORD: '1'
-    volumes:
-      - db:/var/lib/mysql
-
-volumes:
-  wordpress:
-  db:
+networks:
+  traefik-public:
+    external: true
